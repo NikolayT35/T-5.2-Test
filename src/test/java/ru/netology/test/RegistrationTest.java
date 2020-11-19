@@ -1,4 +1,4 @@
-package test;
+package ru.netology.test;
 
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,9 +14,10 @@ class RegistrationTest {
         open("http://localhost:9999");
     }
 
+
     @Test
     void shouldLogin() {
-        val user = DataGenerator.registerValidUser("ru");
+        val user = DataGenerator.registerValidUser();
         $("[data-test-id=login] .input__control").setValue(user.getLogin());
         $("[data-test-id=password] .input__control").setValue(user.getPassword());
         $("[data-test-id=action-login] .button__text").click();
@@ -25,7 +26,7 @@ class RegistrationTest {
 
     @Test
     void shouldNotLoginBlock() {
-        val user = DataGenerator.registerBlockedUser("ru");
+        val user = DataGenerator.registerBlockedUser();
         $("[data-test-id=login] .input__control").setValue(user.getLogin());
         $("[data-test-id=password] .input__control").setValue(user.getPassword());
         $("[data-test-id=action-login] .button__text").click();
@@ -34,7 +35,7 @@ class RegistrationTest {
 
     @Test
     void shouldNotLoginWrongLogin() {
-        val user = DataGenerator.registerWrongLoginUser("ru");
+        val user = DataGenerator.registerWrongLoginUser();
         $("[data-test-id=login] .input__control").setValue(user.getLogin());
         $("[data-test-id=password] .input__control").setValue(user.getPassword());
         $("[data-test-id=action-login] .button__text").click();
@@ -43,7 +44,7 @@ class RegistrationTest {
 
     @Test
     void shouldNotLoginWrongPassword() {
-        val user = DataGenerator.registerWrongPasswordUser("ru");
+        val user = DataGenerator.registerWrongPasswordUser();
         $("[data-test-id=login] .input__control").setValue(user.getLogin());
         $("[data-test-id=password] .input__control").setValue(user.getPassword());
         $("[data-test-id=action-login] .button__text").click();
@@ -52,7 +53,7 @@ class RegistrationTest {
 
     @Test
     void shouldNotLoginNotExistUser() {
-        val user = DataGenerator.registerNotExistUser("ru");
+        val user = DataGenerator.registerNotExistUser();
         $("[data-test-id=login] .input__control").setValue(user.getLogin());
         $("[data-test-id=password] .input__control").setValue(user.getPassword());
         $("[data-test-id=action-login] .button__text").click();

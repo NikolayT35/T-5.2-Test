@@ -17,6 +17,8 @@ public class DataGenerator {
     private DataGenerator() {
     }
 
+    private static Faker faker = new Faker((new Locale("ru")));
+
     @BeforeAll
     static void setUp(Registration registered) {
         given()
@@ -36,8 +38,7 @@ public class DataGenerator {
             .log(LogDetail.ALL)
             .build();
 
-    public static Registration registerValidUser(String locale) {
-        Faker faker = new Faker((new Locale("ru")));
+    public static Registration registerValidUser() {
         val validUser = new Registration(
                 faker.name().username(),
                 faker.internet().password(),
@@ -47,8 +48,7 @@ public class DataGenerator {
         return validUser;
     }
 
-    public static Registration registerBlockedUser(String locale) {
-        Faker faker = new Faker((new Locale("ru")));
+    public static Registration registerBlockedUser() {
         val validUser = new Registration(
                 faker.name().username(),
                 faker.internet().password(),
@@ -58,8 +58,7 @@ public class DataGenerator {
         return validUser;
     }
 
-    public static Registration registerWrongLoginUser(String locale) {
-        Faker faker = new Faker((new Locale("ru")));
+    public static Registration registerWrongLoginUser() {
         val validUser = new Registration(
                 faker.name().username(),
                 "password",
@@ -74,24 +73,22 @@ public class DataGenerator {
         return invalidUser;
     }
 
-    public static Registration registerWrongPasswordUser(String locale) {
-        Faker faker = new Faker((new Locale("ru")));
+    public static Registration registerWrongPasswordUser() {
         val validUser = new Registration(
-                faker.name().username(),
-                "password",
+                "Иванов Иван",
+                faker.internet().password(),
                 "active"
         );
         val invalidUser = new Registration(
-                faker.name().username(),
-                "password",
+                "Иванов Иван",
+                faker.internet().password(),
                 "active"
         );
         setUp(validUser);
         return invalidUser;
     }
 
-    public static Registration registerNotExistUser(String locale) {
-        Faker faker = new Faker((new Locale("ru")));
+    public static Registration registerNotExistUser() {
         val validUser = new Registration(
                 faker.name().username(),
                 faker.internet().password(),
